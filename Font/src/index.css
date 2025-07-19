@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+/* @theme{
+    --font-  : "Kumbh Sans", sans-serif;
+}; */
+/* :root {
+    --font-kumbh: 'Kumbh Sans', sans-serif;
+}
+body {
+    font-family: var(--font-kumbh);
+} */
+@layer utilities {
+    .font-kumbh {
+      font-family: 'Kumbh Sans', sans-serif;
+    }
+    .font-Montserrat{
+      font-family: 'Montserrat', sans-serif;
+    }
+    .text-primary{
+        color: #e43131;
+    }
+    .text-secondary{
+      color: #f7f7f7
+    }
+
+    .my-icon:hover {
+        color: #e43131; /* accent hoặc màu khác */
+        cursor: pointer;
+        transition-duration: 400ms;
+      }
+    .popUp:hover{
+        background-color: #e9ecef;
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.2s ease-out;
+    }
+    
+    .animate-slide-in {
+      animation: slideIn 0.3s ease-out;
+    }
+    
+    .animate-slide-out {
+      animation: slideOut 0.3s ease-in;
+    }
+    
+    /* Scrollbar styles */
+    .scrollbar-thin {
+      scrollbar-width: thin;
+      scrollbar-color: theme('colors.orange.200') theme('colors.orange.50');
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: theme('colors.orange.50');
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background-color: theme('colors.orange.200');
+      border-radius: 10px;
+    } 
+
+    .bg-primary{
+      background-color: #f7f7f7;
+    }
+    .bg-secondary{
+      background-color: #6C6D70;
+    }
+  }
+  @layer components {
+    .btn-primary {
+      @apply bg-black text-white rounded-md text-base md:text-xl  cursor-pointer hover:bg-red-600 transition-all duration-500;
+    }
+    .btn-secondary{
+      @apply bg-black text-white cursor-pointer hover:bg-white hover:text-black transition-all duration-300 rounded-tr-2xl rounded-bl-2xl border-[1px] border-black
+    }
+    .top-menu-item {
+      @apply hover:text-red-500 relative after:absolute after:bottom-0 after:left-0 after:bg-red-500 after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300;
+    }
+  }
+  
+  /* Định nghĩa keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.animate-fade-in {
+  animation: fade-in 0.5s;
+}
+/* Truy vấn media cho thiết bị tối ưu */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* @keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} */

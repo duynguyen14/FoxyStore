@@ -1,0 +1,88 @@
+api:
+  key: /api/v1
+openai:
+  api:
+    key: ${OPENAI_API_KEY}
+    embedding:
+      url: https://api.openai.com/v1/embeddings
+      model: text-embedding-ada-002
+    chat:
+      url: https://api.openai.com/v1/chat/completions
+      model: gpt-4o-mini
+qdrant:
+  url: ${QDRANT_URL}
+  apikey: ${QDRANT_API_KEY}
+spring:
+  port: 8080
+  web:
+    resources:
+      static-locations:
+        file:/D:/Ki6/java web/Upload_Images/
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/test}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  mysql:
+    database: foxystore
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  security:
+    user:
+      name: admin
+      password: Duy14112004@
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            redirect-uri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.web.filter: DEBUG
+    org.springframework.http: DEBUG
+    org.springframework.web.socket: DEBUG
+    org.springframework.messaging: DEBUG
+    level:
+      org:
+        hibernate:
+          SQL=DEBUG:
+
+jwt:
+  signerKey : "YourNewSecretKeyHereMustBeAtLeast32BytesLongForSecurity123456789012345678901234"
+  expiration: 86400000
+app:
+  auth:
+    tokenSecret: "YourNewSecretKeyHereMustBeAtLeast32BytesLongForSecurity123456789012345678901234"
+    tokenExpirationMsec: 86400000
+  cors:
+    allowedOrigins: http://localhost:5173
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:5173/oauth2/redirect
+
+vnpay:
+  pay-url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+  return-url: http://localhost:5173/order
+  tmn-code: 7NB8GD0M
+  secret-key: DUSQCXTEBGA238ARQ2W6FP1WHW9W2P1U
+  api-url: https://sandbox.vnpayment.vn/merchant_webapi/api/transaction
+
+ai:
+  api:
+    url: http://127.0.0.1:8000/recommend/
