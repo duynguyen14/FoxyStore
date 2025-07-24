@@ -37,12 +37,12 @@ Built with a collaborative filtering algorithm that learns from user-product int
 - DockerFile, docker-compose
 
 ## Project Structure
-E commercial App/
-├── Back/            # Spring Boot backend
-├── Font/            # ReactJS frontend
-├── Service AI/      # Python FastAPI recommendation service
-├── README.md
-└── docker-compose.yml
+- E commercial App
+-   Back
+-   Font
+-   Service AI
+-   README.md
+-   docker-compose.yml
 
 ## How to run
 

@@ -260,6 +260,7 @@ public class ProductService {
             ProductSize productSize = ProductSize.builder()
                     .product(product)
                     .size(size)
+                    .quantity(request.getQuantity())
                     .build();
             productSizes.add(productSize);
         }

@@ -13,7 +13,7 @@ async function getProductForYou() {
             return response.data.result;
         }
         else {
-            const sessionId = localStorage.getItem("sessionId");
+            const sessionId = localStorage.getItem("session_id");
             const response = await request.get(`product/recommend?sessionId=${sessionId}`);
             return response.data.result;
         }

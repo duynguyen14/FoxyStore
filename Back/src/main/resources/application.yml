@@ -17,7 +17,8 @@ spring:
   web:
     resources:
       static-locations:
-        file:/D:/Ki6/java web/Upload_Images/
+#        file:/app/images/
+        file:D:/Ki6/java web/Upload_Images
   datasource:
     url: ${DB_URL:jdbc:mysql://localhost:3306/test}
     username: ${DB_USERNAME:root}

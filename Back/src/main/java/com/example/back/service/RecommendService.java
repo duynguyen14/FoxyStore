@@ -3,11 +3,13 @@ package com.example.back.service;
 import com.example.back.dto.response.Product.ProductHome;
 import com.example.back.dto.response.Product.Recommend;
 import com.example.back.dto.response.Product.RecommendResponse;
+import com.example.back.entity.Behavior;
 import com.example.back.entity.Product;
 import com.example.back.entity.User;
 import com.example.back.enums.ErrorCodes;
 import com.example.back.exception.AppException;
 import com.example.back.mapper.ProductMapper;
+import com.example.back.repository.BehaviorRepository;
 import com.example.back.repository.ProductRepository;
 import com.example.back.repository.UserRepository;
 import lombok.AccessLevel;
@@ -32,6 +34,7 @@ public class RecommendService {
     ProductRepository productRepository;
     RestTemplate restTemplate;
     ProductMapper productMapper;
+    BehaviorRepository behaviorRepository;
     @NonFinal
     @Value("${ai.api.url}")
     String url;
@@ -52,6 +55,12 @@ public class RecommendService {
             log.info("không tìm thấy user id or sessionId");
             return Collections.emptyList();
         }
+        List<Behavior> behaviors = behaviorRepository.findBySessionId(sessionId);
+        if(behaviors.isEmpty()){
+            log.info("Behaviors is empty");
+            return Collections.emptyList();
+        }
+
         RecommendResponse recommendResponse = restTemplate.getForObject(url+userKey, RecommendResponse.class);
         if(recommendResponse==null || recommendResponse.getProductIds().isEmpty()){
             log.info("không lấy được danh sách hoặc danh sách rỗng");
@@ -66,7 +75,7 @@ public class RecommendService {
     public void TrainAI(){
         try{
             String response = restTemplate.getForObject(url+"ai/train", String.class);
-            log.info("response: ",response);
+            log.info("response: {}",response);
         }
         catch(Exception e){
             log.error("loi "+e);

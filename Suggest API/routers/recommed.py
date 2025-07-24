@@ -6,7 +6,7 @@ router = APIRouter(
 )
 
 @router.get("/{user_id}")
-def recommend(user_id: int, top_n: int=10):
+def recommend(user_id: str, top_n: int=10):
     scores = RecommedService.getRecommend(user_id,top_n)
     return {
         "productIds":[

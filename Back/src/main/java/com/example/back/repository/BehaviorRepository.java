@@ -13,6 +13,9 @@ public interface BehaviorRepository extends JpaRepository<Behavior,Integer> {
 
     List<Behavior>getByUserId(Integer userId);
 
+    List<Behavior> findBySessionId(String sessionId);
+
+
     @Modifying
     @Query("update Behavior b set b.userId = :userId where b.sessionId = :sessionId AND b.userId is NULL")
     void assignSessionToUser(@Param("sessionId") String sessionId, @Param("userId")Integer userId);

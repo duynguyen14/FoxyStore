@@ -1,5 +1,5 @@
 services:
-  app:
+  backend:
     build: .
     ports:
       - "8080:8080"
@@ -9,7 +9,8 @@ services:
       SPRING_DATASOURCE_PASSWORD: secret
     depends_on:
       - foxydb
-
+    volumes:
+      - "D:/Ki6/java web/Upload_Images/:/app/images"
 
   foxydb:
     image: mysql:8.0

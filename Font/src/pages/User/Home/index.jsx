@@ -5,10 +5,10 @@ import ProductHot from "./ProductHot";
 import Collections from "./Collections";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
-// import {getOrCreateSessionId} from "../../../untils/session";
-import { getProductForYou } from "../../../services/product";
+import {getOrCreateSessionId} from "../../../untils/session";
+// import { getProductForYou } from "../../../services/product";
 import { request } from "../../../untils/request";
-import ProductForYou from "../../../components/OtherComponent/productForYou";
+import ProductForYou from "../../../components/OtherComponent/ProductForYou";
 function Home() {
   const location = useLocation();
   const [showSuccess, setShowSuccess] = useState(false);
@@ -22,12 +22,8 @@ function Home() {
 
   const [newProduct,setNewProduct] =useState([]);
   const[saleProduct,setSaleProduct] =useState([])
-
-  const handleOnclickLove=()=>{
-      
-  }
   useEffect(()=>{
-    // getOrCreateSessionId();
+    getOrCreateSessionId();
     const fetch=async()=>{
       try{
         const response =await request.get("products/home")

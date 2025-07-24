@@ -4,7 +4,9 @@ import { PublicPage } from './pages'
 import OAuthRedirect from './untils/OAuthRedirect';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import ScrollToTop from './components/OtherComponent/ScrollToTop'
+import { getOrCreateSessionId } from './untils/session';
 function App() {
+  getOrCreateSessionId();
   return (
     <Router>
       <div>

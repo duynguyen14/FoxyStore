@@ -1,11 +1,8 @@
-#chuẩn bị môi trường cho java
-FROM eclipse-temurin:21-jdk-alpine
-#thư mục làm việc nơi lưu trữ source code
+FROM python:3.13-slim
 WORKDIR /app
-#thư mục cần copy
-COPY target/back-0.0.1-SNAPSHOT.jar app.jar
-COPY .env .env
-#cổng chạy
-EXPOSE 8080
-#cmd để chạy
-CMD ["java","-jar","app.jar"]
+COPY requirements.txt /app/requirements.txt
+COPY ./ /app
+RUN pip install --upgrade pip && pip install -r requirements.txt
+EXPOSE 8000
+# 6. Run the app with uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

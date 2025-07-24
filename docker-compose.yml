@@ -1,0 +1,48 @@
+services:
+  backend:
+    build:
+      context: ./Back
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://foxydb:3306/foxystore?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull  "
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: secret
+    depends_on:
+      - foxydb
+    volumes:
+      - "D:/Ki6/java web/Upload_Images/:/app/images"
+
+  foxydb:
+    image: mysql:8.0
+    container_name: foxystore
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: foxystore
+    ports:
+      - "3308:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+  
+  frontend:
+    build:
+      context: ./Font
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    
+  ai:
+    build:
+      context: ./Suggest API
+      dockerfile: Dockerfile
+    env_file:
+      - ./Suggest API/.env
+    depends_on:
+      - foxydb
+    ports:
+      - "8000:8000"
+volumes:
+  mysql-data:
+
+      

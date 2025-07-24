@@ -2,3 +2,4 @@ fastapi
 mysql-conector-python
 python-dotenv
 pandas
+uvicorn
